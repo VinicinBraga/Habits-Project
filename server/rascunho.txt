@@ -1,0 +1,65 @@
+Passo a passo - (Inicialização do BackEnd com Typescript)
+-----------------
+1
+npm init -y
+Inicia o Node 
+-----------------
+-----------------
+2
+npm i fastify:
+Um servidor eficiente implica em menor custo de infraestrutura, melhor capacidade de resposta sob carga e usuários satisfeitos. Como você pode lidar eficientemente com os recursos do seu servidor, sabendo que está atendendo o maior número possível de solicitações, sem sacrificar as validações de segurança e o desenvolvimento prático?
+-----------------
+-----------------
+3
+npx tsc --init
+Permite que o Node interprete o TypeScript
+-----------------
+-----------------
+4
+acessar tsconfig.json:
+Alterar no target -> "es2016" para "es2020",
+-----------------
+-----------------
+5
+npx tsc -D
+instalar TSX como dependencia de desenvolvimento.
+Permite executar um arquivo do node com typescript sem precisar fazer algum tipo de converção no arquivo.
+-----------------
+-----------------
+6
+Inserir no packege.json o script para rodar o projeto
+"dev": "tsx src/server.ts"
+-----------------
+-----------------
+7
+Ao invés de utilizar o nodemon é só inserir a palavra watch no script:
+"dev": "tsx watch src/server.ts"
+...assim entra em modo de Watch como o nodemon
+-----------------
+-----------------
+8
+npm i prisma -D  <----ORM
+npm i @prisma/client <----para acessar o banco de dados
+Instalar o prisma para usar Sql na aplicação através de um ORM
+NodeJs and Typescript ORM 
+-----------------
+-----------------
+9
+npx prisma init --datasource-provider SQLite
+Inicializar o banco de dados SQlite
+cria um arquivo local para subir um banco de dados local
+-----------------
+-----------------
+10 
+npx prisma migrate dev
+Cria um arquivo sql que vai fazer a alteração(vercionamento) no banco de dados.
+Mais conhecido como "migrations"
+
+Curiosidade: 
+Basta rodar (npx prisma studio) para abrir no navegador uma interface para navegar pelo banco de dados.
+-----------------
+-----------------
+11
+npm i @fastify/cors
+Instalando o Cors
+Mecanismo para acessar o backend pelo frontand
