@@ -1,22 +1,20 @@
 //Backend API Restful utilizando o fastify(Semelhante ao express)
 import Fastify from "fastify";
 import cors from '@fastify/cors'
-import { PrismaClient } from '@prisma/client' //buscar o banco de dados
+import { appRoutes } from './routes';
 
 const port = 3001
 const app = Fastify()
-const prisma = new PrismaClient()
 
 app.register(cors)
+app.register(appRoutes)
 
-app.get('/habits', async () => {
-   const habits = await prisma.habit.findMany({})
-  return habits
-})
-
-
-app.listen({
-  port
-}).then(() => {
+app.listen({ port }, function (err) {
+  if (err) {
+    app.log.error(err)
+    process.exit(1)
+  }
   console.log(`HTTP Server running on: http://localhost:${port}`)
 })
+  
+  
