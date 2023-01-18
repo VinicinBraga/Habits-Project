@@ -63,3 +63,31 @@ Basta rodar (npx prisma studio) para abrir no navegador uma interface para naveg
 npm i @fastify/cors
 Instalando o Cors
 Mecanismo para acessar o backend pelo frontand
+
+EXTRA
+    - Verificar como ficou o banco:
+    npm i -D prisma-erd-generator @mermaid-js/mermaid-cli
+
+    - Add to your schema.prisma
+    generator erd {
+      provider = "prisma-erd-generator"
+    }
+
+    -Run the generator
+    npx prisma generate
+    
+    -Abra o arquivo ERD.svg com Live Server
+-----------------
+-----------------
+12 - Cria o arquivo seed.ts:
+O seed popula o banco de dados com dados ficticios para ajudar no desenvolvimento do backend
+Como fazer -> https://www.prisma.io/docs/guides/database/seed-database
+Inserir no package.json ---> "prisma": {
+                                "seed": "ts-node prisma/seed.ts"
+                              },
+Trocando "ts-node" por tsx pois é a biblioteca que esta sendo usada;
+
+Já pode popular o seed.
+E apos popular, é só rodar ->  "npx prisma db seed" para atualizar as alterações no banco
+-----------------
+-----------------

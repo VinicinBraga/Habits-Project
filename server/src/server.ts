@@ -14,6 +14,7 @@ app.get('/habits', async () => {
   return habits
 })
 
+
 app.listen({
   port
 }).then(() => {
