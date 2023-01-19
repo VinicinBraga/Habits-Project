@@ -1,13 +1,13 @@
-import Habit from './components/Habit';
 import './styles/global.css'
+import Header from './components/Header'
+//import Habit from './components/Habit';
 
 function App() {
   return (
-    <div className="App">
-      <Habit completed={10} />
-      <Habit completed={9}/>
-      <Habit completed={8} />
-
+    <div className="w-screen h-screen flex justify-center items-center">
+      <div className="w-full max-w-5xl px-6 flex-col gap-16">
+        <Header />
+      </div>
     </div>
   )
 }
