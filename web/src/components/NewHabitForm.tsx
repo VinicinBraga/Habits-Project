@@ -2,20 +2,30 @@ import { AiOutlineCheck } from 'react-icons/ai'
 import { FiCheck } from 'react-icons/fi'
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { FormEvent, useState } from 'react';
+import { api } from '../lib/axios';
 
 const avaibleWeekDays = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thusday", "Friday","Saturday",
 ]
 
-
 const NewHabitForm = () => {
-
   const [title, setTitle] = useState('')
   const [weekDays, setWeekDays] = useState<number[]>([])
 
-  const createNewHabit = (event: FormEvent) => {
+  const createNewHabit = async (event: FormEvent) => {
     event.preventDefault()
-    console.log(title, weekDays)
+    
+    if (!title || weekDays.length === 0) {
+      alert('Please, Create a commitment and recurrence to "Confirm"') 
+      return
+    }
+    await api.post('habits', {
+      title,
+      weekDays
+    })
+    setTitle('')
+    setWeekDays([])
+    alert('Habit created successfully!')
   }
 
   const handleToggleWeekDay = (weekDay: number ) => {
@@ -44,6 +54,7 @@ const NewHabitForm = () => {
         id='title'
         placeholder='ex.: Exercicios, dormir bem, etc...'
         autoFocus
+        value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
@@ -56,6 +67,7 @@ const NewHabitForm = () => {
             <Checkbox.Root
               key={weekDay}
               className='flex items-center gap-3 group'
+              checked={weekDays.includes(index)}
               onCheckedChange={() => handleToggleWeekDay(index)}
             >
               <div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500 '>
@@ -72,7 +84,7 @@ const NewHabitForm = () => {
       </div>
       <button type='submit' className='mt-6 rounded-lg p-4 flex items-center justify-center gap-3 font-semibold bg-green-600 hover:bg-green-500'>
         <AiOutlineCheck size={20} />
-        Confirmar
+        Confirm
       </button>
    </form>
   )
