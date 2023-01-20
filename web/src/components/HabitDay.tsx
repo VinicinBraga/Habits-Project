@@ -19,8 +19,9 @@ const HabitDay = ({completed, amount}: HabitDayProps) => {
           'bg-violet-900 border-violet-700': completedPercent > 0 && completedPercent < 20,
           'bg-violet-800 border-violet-600': completedPercent >= 20 && completedPercent < 40,
           'bg-violet-700 border-violet-500': completedPercent >= 40 && completedPercent < 60,
-          'bg-violet-600 border-violet-500': completedPercent >= 60 && completedPercent < 80,
-          'bg-violet-500 border-violet-400': completedPercent >= 80 && completedPercent <= 100,
+          'bg-violet-600 border-violet-400': completedPercent >= 60 && completedPercent < 80,
+          'bg-violet-500 border-violet-300': completedPercent >= 80 && completedPercent < 90,
+          'bg-violet-400 border-violet-200': completedPercent >= 90 && completedPercent <= 100,
           
         })}
 
