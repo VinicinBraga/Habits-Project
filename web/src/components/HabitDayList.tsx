@@ -5,6 +5,7 @@ import { FiCheck } from 'react-icons/fi'
 import { api } from '../lib/axios';
 
 interface HabitDayListProps {
+  onComplitedChanged: (completed: number) => void
   date: Date
 }
 
@@ -17,7 +18,7 @@ interface HabitsInfo {
   completedHabits: string[]
 }
 
-const HabitDayList = ({ date }: HabitDayListProps) => {
+const HabitDayList = ({ date, onComplitedChanged }: HabitDayListProps) => {
 
   const [habitsDayInfo, setHabitsDayInfo] = useState<HabitsInfo>()
 
@@ -46,6 +47,7 @@ const HabitDayList = ({ date }: HabitDayListProps) => {
       possibleHabits: habitsDayInfo!.possibleHabits,
       completedHabits
     })
+    onComplitedChanged(completedHabits.length)
   }
 
   const isDateInPast = dayjs(date).endOf('day').isBefore(new Date())
@@ -62,7 +64,7 @@ const HabitDayList = ({ date }: HabitDayListProps) => {
               disabled={isDateInPast}
               className='flex items-center gap-3 group'
             >
-              <div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500 '>
+              <div className='h-8 w-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500 transition-colors'>
                 <Checkbox.Indicator>
                   <FiCheck size={20} className='text-white'/>
                 </Checkbox.Indicator>

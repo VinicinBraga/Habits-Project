@@ -12,7 +12,7 @@ const ProgressBar = (props: ProgressBarProps) => {
       <div
         role="progressbar"
         aria-label='habits progress completed on this day'
-        className="h-3 bg-violet-600 rounded-xl"
+        className="h-3 bg-violet-600 rounded-xl transition-all duration-1000"
         style={progressStyle}
       />
   </div>
